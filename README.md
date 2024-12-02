@@ -1,50 +1,96 @@
-# React + TypeScript + Vite
-
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
+# Добавление 1:
+Лента: 0 0 0 1
+Начальное состояние: s1 0
+```json
+{
+    "s1": {
+        "0": ["s1", "0", "R"],
+        "1": ["s1", "1", "R"],
+        "B": ["s2", "B", "L"]
     },
-  },
-})
+    "s2": {
+        "0": ["s3", "1", "L"],
+        "1": ["s2", "0", "L"],
+        "B": ["s3", "1", "L"]
+    },
+    "s3": {
+        "0": ["s3", "0", "L"],
+        "1": ["s3", "1", "L"],
+        "B": ["sh", "B", "R"]
+    }
+}
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+# Сложение двух чисел: 
+Лента: 0 0 0 1 B 1 0 0 0
+Начальное состояние: s1 8
+```json
+{
+    "s1": {
+        "B": ["s9", "B", "L"],
+        "0": ["s7", "B", "L"],
+        "1": ["s2", "B", "L"]
+    },
+    "s2": {
+        "B": ["s3", "B", "L"],
+        "0": ["s2", "0", "L"],
+        "1": ["s2", "1", "L"],
+        "x": ["s2", "x", "L"],
+        "y": ["s2", "y", "L"]
+    },
+    "s3": {
+        "B": ["s5", "y", "R"],
+        "0": ["s5", "y", "R"],
+        "1": ["s4", "x", "L"],
+        "x": ["s3", "x", "L"],
+        "y": ["s3", "y", "L"]
+    },
+    "s4": {
+        "B": ["s5", "1", "R"],
+        "0": ["s5", "1", "R"],
+        "1": ["s4", "0", "L"]
+    },
+    "s5": {
+        "B": ["s6", "B", "R"],
+        "0": ["s5", "0", "R"],
+        "1": ["s5", "1", "R"],
+        "x": ["s5", "x", "R"],
+        "y": ["s5", "y", "R"]
+    },
+    "s6": {
+        "B": ["s1", "B", "L"],
+        "0": ["s6", "0", "R"],
+        "1": ["s6", "1", "R"],
+        "x": ["s6", "x", "R"],
+        "y": ["s6", "y", "R"]
+    },
+    "s7": {
+        "B": ["s8", "B", "L"],
+        "0": ["s7", "0", "L"],
+        "1": ["s7", "1", "L"],
+        "x": ["s7", "x", "L"],
+        "y": ["s7", "y", "L"]
+    },
+    "s8": {
+        "B": ["s5", "x", "R"],
+        "0": ["s5", "x", "R"],
+        "1": ["s5", "y", "R"],
+        "x": ["s8", "x", "L"],
+        "y": ["s8", "y", "L"]
+    },
+    "s9": {
+        "B": ["s10", "B", "R"],
+        "0": ["s10", "0", "R"],
+        "1": ["s10", "1", "R"],
+        "x": ["s9", "0", "L"],
+        "y": ["s9", "1", "L"]
+    },
+    "s10": {
+        "B": ["sh", "B", "L"],
+        "0": ["s10", "0", "R"],
+        "1": ["s10", "1", "R"],
+        "x": ["s10", "x", "R"],
+        "y": ["s10", "y", "R"]
+    }
+}
 ```
